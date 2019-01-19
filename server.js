@@ -32,7 +32,7 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
 
 }
 else {
-  mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true });
+  mongoose.connect("mongodb://localhost/reactnewspopulator", { useNewUrlParser: true });
 }
 
 
@@ -43,7 +43,7 @@ app.get("/scrape", function(req, res) {
   // First, we grab the body of the html with axios
   axios.get("http://reactjsnewsletter.com/").then(function(response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
-    db.Article.remove();
+    db.Article.collection.remove();
     var $ = cheerio.load(response.data);
 
     // Now, we grab every h2 within an article tag, and do the following:
